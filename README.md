@@ -1,15 +1,15 @@
 # flutter_geolocation_service
 
-flutter_geolocation_service
+Flutter plugin for generic location functionality
 
-## Getting Started
+## Documentation
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+flutter_geolocation_service documentation coming soon.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Examples
 
+See example app in `example/`.
+
+## Support
+
+flutter_geolocation_service support coming soon.

@@ -5,16 +5,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_geolocation_service/flutter_geolocation_service.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String _permission = 'Unknown';
+  final _flutterGeolocationServicePlugin = FlutterGeolocationService();
 
   @override
   void initState() {
@@ -22,16 +25,12 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
+    bool permisssion;
     try {
-      platformVersion =
-          await FlutterGeolocationService.platformVersion ?? 'Unknown platform version';
+      permisssion = await FlutterGeolocationService.checkPermission() ?? false;
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      permisssion = false;
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -40,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _permission = permisssion.toString();
     });
   }
 
@@ -49,10 +48,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Geolocation example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Running on: $_permission\n'),
         ),
       ),
     );
