@@ -28,7 +28,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     bool permisssion;
     try {
-      permisssion = await FlutterGeolocationService.checkPermission() ?? false;
+      permisssion = true;
+      //permisssion = await FlutterGeolocationService.checkPermission() ?? false;
     } on PlatformException {
       permisssion = false;
     }
